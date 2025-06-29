@@ -1,10 +1,10 @@
 # WoS-JCR Impact Factor Explorer 2023
 
 ## Description
-A Streamlit-based web application that enables users to explore and analyze journal impact factors from Web of Science (WoS) Journal Citation Reports, enhanced with country and research area data from SCImago Journal Rank (SJR).
+A web application that enables users to explore and analyze journal impact factors from Web of Science (WoS) Journal Citation Reports, enhanced with country and research area data from SCImago Journal Rank (SJR).
 
-## Demo
-[Live Demo](https://your-app-url.streamlit.app)
+## URL
+https://wos-jcr-2025.streamlit.app/ 
 
 ## Features
 - **Interactive Journal Search**
