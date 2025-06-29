@@ -81,28 +81,38 @@ with left_col:
     search_term = st.text_input("Search Journal by Name", value=st.session_state['search_term'])
     st.session_state['search_term'] = search_term
 
-    # Impact Factor Range - using slider instead of number inputs for better UX
+    # Impact Factor Range - using number inputs instead of slider
     st.subheader("Impact Factor Range (JIF 2024)")
     
-    # Use a slider with custom width to make it more left-oriented
-    if_range = st.slider(
-        "Impact Factor",
-        min_value=float(data['IF'].min()),
-        max_value=float(data['IF'].max()),
-        value=(float(st.session_state['if_min']), float(st.session_state['if_max'])),
-        step=0.1,
-        format="%.2f"
-    )
-    if_min, if_max = if_range
-    st.session_state['if_min'] = if_min
-    st.session_state['if_max'] = if_max
-    
-    # Display the current range values in a more compact way
+    # Use two columns for min and max inputs
     col1, col2 = st.columns(2)
+    
     with col1:
-        st.write(f"Min: {if_min:.2f}")
+        if_min = st.number_input(
+            "Min Impact Factor",
+            min_value=float(data['IF'].min()),
+            max_value=float(data['IF'].max()),
+            value=float(st.session_state['if_min']),
+            step=0.1,
+            format="%.2f"
+        )
+        st.session_state['if_min'] = if_min
+    
     with col2:
-        st.write(f"Max: {if_max:.2f}")
+        if_max = st.number_input(
+            "Max Impact Factor",
+            min_value=float(data['IF'].min()),
+            max_value=float(data['IF'].max()),
+            value=float(st.session_state['if_max']),
+            step=0.1,
+            format="%.2f"
+        )
+        st.session_state['if_max'] = if_max
+    
+    # Ensure min is not greater than max
+    if if_min > if_max:
+        st.error("Minimum Impact Factor cannot be greater than Maximum Impact Factor")
+        if_min = if_max
 
     # Quartile
     quartile_filter = st.multiselect('JIF Quartile', data['Q'].dropna().unique(), default=st.session_state['quartile_filter'])
@@ -191,4 +201,3 @@ with right_col:
     
     # Show count with more detailed information
     st.write(f"Showing {len(filtered_data)} journals out of {len(data)} total")
-    
