@@ -56,6 +56,9 @@ streamlit run app.py
 streamlit
 pandas
 numpy
+openpyxl
+xlrd
+requests
 ```
 
 ## Usage
