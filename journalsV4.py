@@ -42,7 +42,7 @@ st.markdown("<hr style='margin: 0.5rem 0; height: 1px'>", unsafe_allow_html=True
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel('JCR_Enriched_With_ISSN_Matching.xlsx')
+    df = pd.read_csv('JCR_Enriched_With_ISSN_Matching.csv')
     df.rename(columns={
         'JIF 2024': 'IF',
         'JIF Quartile': 'Q',
